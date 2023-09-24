@@ -5,6 +5,7 @@ let defaultDate = {};
 let globalTime = 0;
 
 const refs = {
+  input: document.querySelector('#datetime-picker'),
   button: document.querySelector('button'),
   days: document.querySelector('span[data-days]'),
   hours: document.querySelector('span[data-hours]'),
@@ -36,7 +37,8 @@ document.querySelector('button').addEventListener('click', function() {
   refs.hours.textContent = defaultDate.hours.toString().padStart(2, '0');
   refs.minutes.textContent = defaultDate.minutes.toString().padStart(2, '0');
   refs.seconds.textContent = defaultDate.seconds.toString().padStart(2, '0');
-
+  refs.button.setAttribute('disabled', 'true');
+  refs.input.setAttribute('disabled', 'true');
   const interval = setInterval(function() {
     globalTime -= 1000;
     let newValue = convertMs(globalTime);
@@ -46,6 +48,7 @@ document.querySelector('button').addEventListener('click', function() {
     refs.seconds.textContent = newValue.seconds.toString().padStart(2, '0');
     if (globalTime <= 1000) {
       clearInterval(interval);
+      refs.input.removeAttribute('disabled');
     }
   }, 1000);
 })
