@@ -3,7 +3,7 @@ document.querySelector('.form').addEventListener('submit', function(e) {
   const amount = +document.querySelector('input[name="amount"]').value;
   let delay = +document.querySelector('input[name="delay"]').value;
   const step = +document.querySelector('input[name="step"]').value;
-  for (let i = 1; i < amount; i++) {
+  for (let i = 1; i <= amount; i++) {
     if (i > 1) {
       delay += step;
     }
